@@ -15,9 +15,16 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
+
+    - name: Buat Konfigurasi AndroidX
+      run: |
+        echo "android.useAndroidX=true" > gradle.properties
+        echo "android.enableJetifier=true" >> gradle.properties
         
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v3
+      with:
+        gradle-version: '8.4'
       
     - name: Build APK (Debug)
       run: gradle assembleDebug
